@@ -8,34 +8,33 @@
 							<h2 class="caption title">
 								Soja  <span class="primary"> <strong></strong></span>
 							</h2>
-							<h4 class="caption subtitle">Dual SIM</h4>
+							<h4 class="caption subtitle">Saca 60 KG</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
-					<li><img src="res/site/img/h4-slide2.png" alt="Slide">
+					<li><img src="res/site/img/h4-slide(2.png" alt="Slide">
+						<div class="caption-group">
+							<h2 class="caption title"> Milho<span class="primary"><strong></strong></span>
+							</h2>
+								<h4 class="caption subtitle">Saca 60 KG</h4>
+							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
+						</div>
+					</li>
+					<li><img src="res/site/img/h4-slide(3.png" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
-								by one, get one <span class="primary">50% <strong>off</strong></span>
+								Café <span class="primary">Arábica <strong></strong></span>
 							</h2>
-							<h4 class="caption subtitle">school supplies & backpacks.*</h4>
+							<h4 class="caption subtitle">Saca 60 KG</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
-					<li><img src="res/site/img/h4-slide3.png" alt="Slide">
-						<div class="caption-group">
-							<h2 class="caption title">
-								Apple <span class="primary">Store <strong>Ipod</strong></span>
-							</h2>
-							<h4 class="caption subtitle">Select Item</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
-					<li><img src="res/site/img/h4-slide4.png" alt="Slide">
+					<li><img src="res/site/img/h4-slide(4.png" alt="Slide">
 						<div class="caption-group">
 						  <h2 class="caption title">
-								Apple <span class="primary">Store <strong>Ipod</strong></span>
+								Trigo <span class="primary"><strong></strong></span>
 							</h2>
-							<h4 class="caption subtitle">& Phone</h4>
+							<h4 class="caption subtitle">Saca 60 KG</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
@@ -155,7 +154,7 @@
                                 <h2>Trigo </h2>
 
                                 <div class="product-carousel-price">
-                                   	
+                                   	     <ins>$73.88</ins><del>$82.81</del>
                                 </div>                                 
                             </div>
                             <div class="single-product">

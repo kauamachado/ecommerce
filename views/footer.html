@@ -28,8 +28,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categorias</h2>
                         <ul>
-                            <li><a href="#">Sacas 25 KG</a></li>
-                            <li><a href="#">Sacas 60 KG</a></li>
+                            <li><a href="..\res\site\lista-produtos.html">Cereais</a></li>
                         </ul>                        
                     </div>
                 </div>
