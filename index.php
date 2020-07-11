@@ -89,16 +89,21 @@ $app->get("/admin/users/:iduser/delete", function($iduser){
 	
 });
 
-$app->get("/admin/users/:iduser", function($iduser){
-
-	User::verifyLogin();
-
-	$page = new PageAdmin();
-
-	$page->setTpl("users-update");
+$app->get('/admin/users/:iduser', function($iduser){
+ 
+   User::verifyLogin();
+ 
+   $user = new User();
+ 
+   $user->get((int)$iduser);
+ 
+   $page = new PageAdmin();
+ 
+   $page ->setTpl("users-update", array(
+        "user"=>$user->getValues()
+    ));
+ 
 });
-
-
 
 
 $app->post("/admin/users/create", function () {
