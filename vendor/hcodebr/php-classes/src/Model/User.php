@@ -10,7 +10,7 @@ class User extends Model {
 	const SESSION = "User";
 
 	protected $fields = [
-		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister"
+		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister", "desperson", "desemail", "nrphone"
 	];
 
 	public static function login($login, $password):User
@@ -83,49 +83,57 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results =	$sql->select("CALL sp_users_update_save(:desperson, :deslogin, :despassword,:desemail, :nrphone, :inadmin", array(
-				":desperson"=>$this->getdesperson(),
-				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>$this->getdespassword(),
-				":desemail"=>$this->getdesemail(),
-				":nrphone"=>$this->getnrphone(),
-				":inadmin"=>$this->getinadmin()
-		));
+		$results =    $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+   				 ":desperson"=>$this->getdesperson(),
+   				 ":deslogin"=>$this->getdeslogin(),
+				 ":despassword"=>$this->getdespassword(),
+				 ":desemail"=>$this->getdesemail(),
+				 ":nrphone"=>$this->getnrphone(),
+				 ":inadmin"=>$this->getinadmin()
+	));
 
 		$this->setData($results[0]);
 	
 	}
-public function get($iduser)
+
+	public function get($iduser)
 {
  
- $sql = new Sql();
+ 	$sql = new Sql();
  
  $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser;", array(
  ":iduser"=>$iduser
  ));
  
- $data = $results[0];
- 
- $this->setData($data);
+	$this->setData($results[0]);
  
  }
 	public function update()
 	{
 		$sql = new Sql();
 
-		$results =	$sql->select("CALL sp_users_update_save(:iduser, :desperson, :deslogin, :despassword,:desemail, :nrphone, :inadmin", array(
-				":iduser"=>$this->getiduser(),
-				":desperson"=>$this->getdesperson(),
-				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>$this->getdespassword(),
-				":desemail"=>$this->getdesemail(),
-				":nrphone"=>$this->getnrphone(),
-				":inadmin"=>$this->getinadmin(),
-		));
+		$results =    $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+				 ":iduser"=>$this->getiduser(),
+   				 ":desperson"=>$this->getdesperson(),
+   				 ":deslogin"=>$this->getdeslogin(),
+				 ":despassword"=>$this->getdespassword(),
+				 ":desemail"=>$this->getdesemail(),
+				 ":nrphone"=>$this->getnrphone(),
+				 ":inadmin"=>$this->getinadmin()
+	));
 
 		$this->setData($results[0]);
 	
 
+	}
+
+	public function delete()
+	{
+		$sql = new Sql();
+
+		$sql->query("CALL sp_users_delete(:iduser)", array(
+			":iduser"=>$this->getiduser()
+		));
 	}
 
 }
