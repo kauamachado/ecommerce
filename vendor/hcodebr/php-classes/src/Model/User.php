@@ -8,6 +8,8 @@ use \Hcode\DB\Sql;
 class User extends Model {
 
 	const SESSION = "User";
+	const SECRET = "HcodePhp7_Secret";
+	const SECRET_IV = "HcodePhp7_Secret_IV";
 
 	protected $fields = [
 		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtergister", "desperson", "desemail", "nrphone"
@@ -134,6 +136,61 @@ class User extends Model {
 		$sql->query("CALL sp_users_delete(:iduser)", array(
 			":iduser"=>$this->getiduser()
 		));
+	}
+
+	public static function getForgot($email)
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+				SELECT * 
+				FROM tb_persons a
+				INNER JOIN tb_users b USING (idperson)
+				WHERE a.desemail = :email;
+			", array(
+					":email"=>$email
+				));
+
+				if (count($results)===0)
+				{
+					throw new \Exception("Não foi possivel recuperar a senha.", 1);
+					
+				}else{
+
+					$data = $results[0];
+
+					$results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array( 
+							":iduser"=>$data["iduser"],
+							":desip"=>$_SERVER["REMOTE_ADDR"]
+					));
+
+					if(count($results2)===0)
+					{
+						throw new \Exception("Não foi possivel recuperar a senha", 1);
+						
+					}
+					else{
+
+						
+						$dataRecovery = $results2[0];
+
+						$code = openssl_encrypt($dataRecovery['idrecovery'], 'AES-128-CBC', pack("a16", User::SECRET_IV), 0, pack("a16", User::SECRET));
+
+						$code = base64_encode($code);
+
+						$link = "http://www.mundodasemente.com.br/forgot/reset?code=$code";
+
+						$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir senha da World of Seeds", "forgot",
+						 array(
+							"name"=>$data["desperson"],
+							"link"=>$link
+				));				
+
+							$mailer->send();
+
+				return $data;
+					}
+				}
 	}
 
 }
