@@ -2,13 +2,17 @@
 
 namespace Hcode;
 
+use \Hcode\Mailer;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Rain\Tpl;
 
+
+
 class Mailer {
-	
+
+
 	const USERNAME = "worldofseeds2020@gmail.com";
 	const PASSWORD = "senhaworld";
 	const NAME_FROM = "World Of Seeds";
@@ -30,7 +34,7 @@ class Mailer {
 
 		foreach ($data as $key => $value) {
 			$tpl->assign($key, $value);
-		}
+		}	
 
 		$html = $tpl->draw($tplName, true);
 
