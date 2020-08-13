@@ -384,7 +384,7 @@
           <div class="content">
             <span class="brand">
               <a href="#">
-                Hcode Store
+                World of Seeds
               </a>
             </span>
           </div>
