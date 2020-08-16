@@ -185,6 +185,7 @@ $app->get("/admin/forgot/sent", function(){
 });
 
 
+
 $app->get("/admin/forgot/reset", function(){
 
 	$user = User::validForgotDecrypt($_GET["code"]);

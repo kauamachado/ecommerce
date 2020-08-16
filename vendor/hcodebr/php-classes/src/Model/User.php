@@ -231,7 +231,7 @@ class User extends Model {
 		}
 
 	}
-
+	
 	public static function setFogotUsed($idrecovery)
 	{
 
@@ -252,6 +252,14 @@ class User extends Model {
 			":password"=>$password,
 			":iduser"=>$this->getiduser()
 		));
+
+	}
+	public static function getPasswordHash($password)
+	{
+
+		return password_hash($password, PASSWORD_DEFAULT, [
+			'cost'=>12
+		]);
 
 	}
 
