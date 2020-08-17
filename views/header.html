@@ -13,15 +13,15 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="res/site/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/res/site/css/bootstrap.min.css">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="res/site/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/res/site/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="res/site/css/owl.carousel.css">
-    <link rel="stylesheet" href="res/site/css/style.css">
-    <link rel="stylesheet" href="res/site/css/responsive.css">
+    <link rel="stylesheet" href="/res/site/css/owl.carousel.css">
+    <link rel="stylesheet" href="/res/site/css/style.css">
+    <link rel="stylesheet" href="/res/site/css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,25 +46,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="header-right">
-                        <ul class="list-unstyled list-inline">
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">moeda :</span><span class="value">BRL </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">BRL</a></li>
-                                 
-                                </ul>
-                            </li>
 
-                            <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">linguagem :</span><span class="value">Português </span><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Português</a></li>
-                                    <!-- <li><a href="#">Inglês</a></li>
-                                    <li><a href="#">Espanhol</a></li> -->
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -77,7 +59,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="index.html"><img src="res/site/img/logo.png"></a></h1>
+                        <h1><a href="index.html"><img src="/res/site/img/logo.png"></a></h1>
                     </div>
                 </div>
                 
