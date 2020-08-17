@@ -1,0 +1,1 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/categories/5">Adubos</a></li><li><a href="/categories/6">Agrotóxicos</a></li><li><a href="/categories/2">Cereais</a></li><li><a href="/categories/3">Hortaliças</a></li>
