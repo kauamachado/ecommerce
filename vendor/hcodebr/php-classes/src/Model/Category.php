@@ -41,7 +41,7 @@ class Category extends Model {
  	$results = $sql->select("SELECT * FROM tb_categories WHERE idcategory = :idcategory", [
  		':idcategory'=>$idcategory
  	]);
-
+ 		
 	 	$this->setData($results[0]);
 
 	 }
@@ -109,7 +109,7 @@ class Category extends Model {
 
 	 }
 
- 		public function getProductsPage($page = 1, $itemsPerPage = 8)
+ 		public function getProductsPage($page = 1, $itemsPerPage = 4)
  	{
 
 	 	$start = ($page - 1) * $itemsPerPage;
@@ -132,7 +132,7 @@ class Category extends Model {
 	 	return [
 	 		'data'=>Product::checkList($results),
 			'total'=>(int)$resultTotal[0]["nrtotal"],
-		 		'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		 	'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
 	 	];
 
  }

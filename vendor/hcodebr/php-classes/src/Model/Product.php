@@ -68,15 +68,15 @@ class Product extends Model {
 	}
 
 	public function delete()
-	{
-
-		$sql = new Sql();
-
-		$sql->query("DELETE FROM tb_products WHERE idproduct = :idproduct", [
-			':idproduct'=>$this->getidproduct()
-		]);
-
-	}
+{
+ 
+    $sql = new Sql();
+ 
+    $sql->query("CALL sp_products_delete(:idproduct)", [
+        ':idproduct'=>$this->getidproduct()
+    ]);
+ 
+}
 
 	public function checkPhoto()
 	{
