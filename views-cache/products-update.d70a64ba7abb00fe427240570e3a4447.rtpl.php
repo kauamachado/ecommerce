@@ -24,6 +24,10 @@
               <label for="desproduct">Nome da produto</label>
               <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome do produto" value="<?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
             </div>
+             <div class="form-group">
+              <label for="vldescricao">Descrição do produto</label>
+              <input type="text" class="form-control" id="vldescricao" name="vldescricao" placeholder="Digite a descrição" value="<?php echo htmlspecialchars( $product["vldescricao"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+            </div>
             <div class="form-group">
               <label for="vlprice">Preço</label>
               <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00" value="<?php echo htmlspecialchars( $product["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
