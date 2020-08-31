@@ -77,7 +77,7 @@
 
                                 <div class="cross-sells">
 
-                                    <h2>Cálculo de Frete</h2>
+                                    <h2>Calculo de Frete</h2>
                                     
                                     <div class="coupon">
                                         <label for="cep">CEP:</label>
