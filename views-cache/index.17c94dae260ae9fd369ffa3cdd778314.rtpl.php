@@ -2,42 +2,18 @@
         	<!-- Slider -->
 			<div class="block-slider block-slider4">
 				<ul class="" id="bxslider-home4">
-					<li>
+					<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?><li> 
 						<img src="res/site/img/h4-slide.png" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
-								Soja  <span class="primary"> <strong></strong></span>
+								<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <span class="primary"> <strong></strong></span>
 							</h2>
-							<h4 class="caption subtitle">Saca 60 KG</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
+							
+							<a class="caption button-radius" href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
-					<li><img src="res/site/img/h4-slide(2.png" alt="Slide">
-						<div class="caption-group">
-							<h2 class="caption title"> Milho<span class="primary"><strong></strong></span>
-							</h2>
-								<h4 class="caption subtitle">Saca 60 KG</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
-					<li><img src="res/site/img/h4-slide(3.png" alt="Slide">
-						<div class="caption-group">
-							<h2 class="caption title">
-								Café <span class="primary">Arábica <strong></strong></span>
-							</h2>
-							<h4 class="caption subtitle">Saca 60 KG</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
-					<li><img src="res/site/img/h4-slide(4.png" alt="Slide">
-						<div class="caption-group">
-						  <h2 class="caption title">
-								Trigo <span class="primary"><strong></strong></span>
-							</h2>
-							<h4 class="caption subtitle">Saca 60 KG</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
+                    <?php } ?>
+
 				</ul>
 			</div>
 			<!-- ./Slider -->

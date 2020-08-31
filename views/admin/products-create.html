@@ -29,6 +29,10 @@
               <label for="desproduct">Nome da produto</label>
               <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome do produto">
             </div>
+             <div class="form-group">
+              <label for="vldescricao">Descrição do produto</label>
+              <input type="text" class="form-control" id="vldescricao" name="vldescricao" placeholder="Digite a descrição" >
+            </div>
             <div class="form-group">
               <label for="vlprice">Preço</label>
               <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00">
@@ -52,6 +56,16 @@
             <div class="form-group">
               <label for="desurl">URL</label>
               <input type="text" class="form-control" id="desurl" name="desurl">
+            </div>
+              <div class="form-group">
+              <label for="file">Foto</label>
+              <input type="file" class="form-control" id="file" name="file">
+              <div class="box box-widget">
+                <div class="box-body">
+                  <img class="img-responsive" id="image-preview" alt="Photo" width:  100px;
+    height: 100px;>
+                </div>
+              </div>
             </div>
           </div>
           <!-- /.box-body -->

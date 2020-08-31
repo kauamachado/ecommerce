@@ -1,1 +1,1 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/categories/11">Aleatória</a></li><li><a href="/categories/10">Arvores Nativas</a></li><li><a href="/categories/8">Cereais</a></li><li><a href="/categories/9">Frutos</a></li>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/categories/8">Cereais</a></li>
