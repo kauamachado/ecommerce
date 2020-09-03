@@ -13,9 +13,9 @@ use Rain\Tpl;
 class Mailer {
 
 
-	const USERNAME = "worldofseeds2020@gmail.com";
-	const PASSWORD = "motorolasam12";
-	const NAME_FROM = "World Of Seeds";
+	const USERNAME = "";
+	const PASSWORD = "";
+	const NAME_FROM = "";
 
 	private $mail;
 
