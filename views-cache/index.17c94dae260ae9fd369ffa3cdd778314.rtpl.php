@@ -1,23 +1,24 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>  <div class="slider-area">
-        	<!-- Slider -->
-			<div class="block-slider block-slider4">
-				<ul class="" id="bxslider-home4">
-					<?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?><li> 
-						<img src="res/site/img/h4-slide.png" alt="Slide">
-						<div class="caption-group">
-							<h2 class="caption title">
-								<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <span class="primary"> <strong></strong></span>
-							</h2>
-							
-							<a class="caption button-radius" href="/cart/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/add"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
-                    <?php } ?>
+<?php if(!class_exists('Rain\Tpl')){exit;}?> <div class="slider-area">
+            
+            <div class="block-slider block-slider4">
+                <ul class="" id="bxslider-home4">
+                     <li>
+                        <img src="/res/site/img/slide.jpg" alt="Slide">
+                    </li>  
+                     <li>
+                        <img src="/res/site/img/slide2.jpg" alt="Slide">
 
-				</ul>
-			</div>
-			<!-- ./Slider -->
-    </div> <!-- End slider area -->
+                    </li>   
+                     <li>
+                        <img src="/res/site/img/slide3.jpg" alt="Slide">
+
+                    </li>               
+            
+
+                </ul>
+            </div>
+           
+    </div> 
     
     <div class="promo-area">
         <div class="zigzag-bottom"></div>

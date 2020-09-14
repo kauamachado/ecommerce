@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 use \Hcode\Page;
 use \Hcode\Model\Product;
 use \Hcode\Model\Category;
@@ -8,42 +9,45 @@ use \Hcode\Model\User;
 use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
 
-$app->get('/', function(){
+$app->get('/', function() {
 
-		$products = Product::listAll();
+	$products = Product::listAll();
 
-		$page = new Page();
+	$page = new Page();
 
-		$page->setTpl("index",[
-			'products'=>Product::checkList($products)
-		]);
-	});
-$app->get("/categories/:idcategory",function($idcategory){
+	$page->setTpl("index", [
+		'products'=>Product::checkList($products)
+	]);
 
-		$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+});
 
-		$category = new Category();
+$app->get("/categories/:idcategory", function($idcategory){
 
-		$category->get((int)$idcategory);
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 
-		$pagination = $category->getProductsPage($page);
+	$category = new Category();
 
-		$pages=[];
+	$category->get((int)$idcategory);
 
-			for ($i=1; $i <= $pagination['pages']; $i++) { 
+	$pagination = $category->getProductsPage($page);
+
+	$pages = [];
+
+	for ($i=1; $i <= $pagination['pages']; $i++) { 
 		array_push($pages, [
 			'link'=>'/categories/'.$category->getidcategory().'?page='.$i,
 			'page'=>$i
 		]);
 	}
 
-		$page = new Page();
+	$page = new Page();
 
-		$page->setTpl("category", [
-			 'category'=>$category->getValues(),
-			 'products'=>$pagination["data"],
-			 'pages'=>$pages
-		]);
+	$page->setTpl("category", [
+		'category'=>$category->getValues(),
+		'products'=>$pagination["data"],
+		'pages'=>$pages
+	]);
+
 });
 
 $app->get("/products/:desurl", function($desurl){
@@ -95,6 +99,7 @@ $app->get("/cart/:idproduct/add", function($idproduct){
 	exit;
 
 });
+
 $app->get("/cart/:idproduct/minus", function($idproduct){
 
 	$product = new Product();
@@ -135,6 +140,7 @@ $app->post("/cart/freight", function(){
 	exit;
 
 });
+
 $app->get("/checkout", function(){
 
 	User::verifyLogin(false);
@@ -179,7 +185,6 @@ $app->get("/checkout", function(){
 	]);
 
 });
-
 
 $app->post("/checkout", function(){
 
@@ -248,10 +253,71 @@ $app->post("/checkout", function(){
 
 	$order->save();
 
+	switch ((int)$_POST['payment-method']) {
 
-		header("Location: /order/".$order->getidorder());
+		case 1:
+		header("Location: /order/".$order->getidorder()."/pagseguro");
+		break;
+
+		case 2:
+		header("Location: /order/".$order->getidorder()."/paypal");
+		break;
+
+	}
 
 	exit;
+
+});
+
+$app->get("/order/:idorder/pagseguro", function($idorder){
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	$cart = $order->getCart();
+
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("payment-pagseguro", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts(),
+		'phone'=>[
+			'areaCode'=>substr($order->getnrphone(), 0, 2),
+			'number'=>substr($order->getnrphone(), 2, strlen($order->getnrphone()))
+		]
+	]);
+
+
+});
+
+$app->get("/order/:idorder/paypal", function($idorder){
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	$cart = $order->getCart();
+
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("payment-paypal", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts()
+	]);
+
 
 });
 
@@ -283,6 +349,7 @@ $app->post("/login", function(){
 	exit;
 
 });
+
 $app->get("/logout", function(){
 
 	User::logout();
@@ -291,6 +358,7 @@ $app->get("/logout", function(){
 	exit;
 
 });
+
 $app->post("/register", function(){
 
 	$_SESSION['registerValues'] = $_POST;
@@ -405,6 +473,7 @@ $app->post("/forgot/reset", function(){
 	$page->setTpl("forgot-reset-success");
 
 });
+
 $app->get("/profile", function(){
 
 	User::verifyLogin(false);
@@ -414,9 +483,9 @@ $app->get("/profile", function(){
 	$page = new Page();
 
 	$page->setTpl("profile", [
-		 'user'=>$user->getValues(),
-		 'profileMsg'=>User::getSuccess(),
-		 'profileError'=>User::getError()
+		'user'=>$user->getValues(),
+		'profileMsg'=>User::getSuccess(),
+		'profileError'=>User::getError()
 	]);
 
 });
@@ -457,7 +526,7 @@ $app->post("/profile", function(){
 
 	$user->setData($_POST);
 
-	$user->update();
+	$user->save();
 
 	User::setSuccess("Dados alterados com sucesso!");
 
@@ -465,10 +534,10 @@ $app->post("/profile", function(){
 	exit;
 
 });
+
 $app->get("/order/:idorder", function($idorder){
 
 	User::verifyLogin(false);
-
 
 	$order = new Order();
 
@@ -476,8 +545,7 @@ $app->get("/order/:idorder", function($idorder){
 
 	$page = new Page();
 
-
-	$page->setTpl("payment",[
+	$page->setTpl("payment", [
 		'order'=>$order->getValues()
 	]);
 
@@ -493,7 +561,7 @@ $app->get("/boleto/:idorder", function($idorder){
 
 	// DADOS DO BOLETO PARA O SEU CLIENTE
 	$dias_de_prazo_para_pagamento = 10;
-	$taxa_boleto = 3.25;
+	$taxa_boleto = 5.00;
 	$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
 
 	$valor_cobrado = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
@@ -514,13 +582,13 @@ $app->get("/boleto/:idorder", function($idorder){
 	$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP: " . $order->getdeszipcode();
 
 	// INFORMACOES PARA O CLIENTE
-	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja World Of Seeds";
+	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Hcode E-commerce";
 	$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
 	$dadosboleto["demonstrativo3"] = "";
 	$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
 	$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: WorldOfSeeds2020@gmail.com";
-	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema World Of Seeds";
+	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: suporte@hcode.com.br";
+	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
 
 	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 	$dadosboleto["quantidade"] = "";
@@ -542,11 +610,11 @@ $app->get("/boleto/:idorder", function($idorder){
 	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
 
 	// SEUS DADOS
-	$dadosboleto["identificacao"] = "World Of Seeds";
-	$dadosboleto["cpf_cnpj"] = "71.227.158/0001-47";
-	$dadosboleto["endereco"] = "Av. Europa, 1097 - Jardim Europa,18406-460";
-	$dadosboleto["cidade_uf"] = " Itapeva-SP";
-	$dadosboleto["cedente"] = "World of Seeds LTDA - ME";
+	$dadosboleto["identificacao"] = "Hcode Treinamentos";
+	$dadosboleto["cpf_cnpj"] = "24.700.731/0001-08";
+	$dadosboleto["endereco"] = "Rua Ademar Saraiva Leão, 234 - Alvarenga, 09853-120";
+	$dadosboleto["cidade_uf"] = "São Bernardo do Campo - SP";
+	$dadosboleto["cedente"] = "HCODE TREINAMENTOS LTDA - ME";
 
 	// NÃO ALTERAR!
 	$path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "res" . DIRECTORY_SEPARATOR . "boletophp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;
@@ -593,6 +661,7 @@ $app->get("/profile/orders/:idorder", function($idorder){
 	]);	
 
 });
+
 $app->get("/profile/change-password", function(){
 
 	User::verifyLogin(false);
@@ -652,13 +721,6 @@ $app->post("/profile/change-password", function(){
 
 	}
 
-	if($_POST['new_pass'] !=$_POST['new_pass_confirm']){
-		User::setError("A confirmação da senha deve ser igual a senha.");
-		header("Location: /profile/change-password");
-	exit;
-
-	}
-
 	$user->setdespassword($_POST['new_pass']);
 
 	$user->update();
@@ -669,4 +731,6 @@ $app->post("/profile/change-password", function(){
 	exit;
 
 });
-?>
+
+
+ ?>
