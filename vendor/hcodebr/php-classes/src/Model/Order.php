@@ -124,6 +124,7 @@ class Order extends Model {
 	{
 
 		$_SESSION[Order::SUCCESS] = $msg;
+		
 
 	}
 
@@ -132,7 +133,9 @@ class Order extends Model {
 
 		$msg = (isset($_SESSION[Order::SUCCESS]) && $_SESSION[Order::SUCCESS]) ? $_SESSION[Order::SUCCESS] : '';
 
-		Order::clearSuccess();
+		Order::clearSuccess(); 
+
+
 
 		return $msg;
 
