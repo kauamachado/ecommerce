@@ -16,8 +16,8 @@
 <section class="content">
 
   <div class="row">
-  	<div class="col-md-12">
-  		<div class="box box-success">
+    <div class="col-md-12">
+      <div class="box box-success">
         <div class="box-header with-border">
           <h3 class="box-title">Novo Usuário</h3>
         </div>
@@ -29,17 +29,6 @@
               <label for="desperson">Nome</label>
               <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome">
             </div>
-             <div class="form-group">
-              <label for="file">Foto</label>
-              <input type="file" class="form-control" id="file" name="file">
-              <div class="box box-widget">
-                <div class="box-body">
-                  <img class="img-responsive" id="image-preview" alt="Photo" width:  100px;
-                    height: 100px;>
-                </div>
-              </div>
-            </div>
-          </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
               <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login">
@@ -68,7 +57,7 @@
           </div>
         </form>
       </div>
-  	</div>
+    </div>
   </div>
 
 </section>
