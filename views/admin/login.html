@@ -45,9 +45,7 @@
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Lembrar-se
-            </label>
+    
           </div>
         </div>
         <!-- /.col -->
@@ -59,13 +57,9 @@
     </form>
 
     <div class="social-auth-links text-center">
-      <p>- Ou -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i>Entrar com
-        Facebook</a>
-    <!-- /.social-auth-links -->
 
     <a href="/admin/forgot">Esqueci a senha</a><br>
-    <a href="register.html" class="text-center">Registrar um novo membro</a>
+    
 
   </div>
   <!-- /.login-box-body -->

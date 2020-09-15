@@ -179,6 +179,14 @@ class Product extends Model {
 
 	}
 
+	public function getProducts()
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_products");
+
+	}
+
 	public static function getPage($page = 1, $itemsPerPage = 10)
 	{
 
