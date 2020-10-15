@@ -165,6 +165,16 @@ class Product extends Model {
 
 	}
 
+	public function getProducts()
+	{
+		$sql = new Sql();
+
+		return  $sql->select("
+			SELECT b.idproduct, b.desproduct , b.vlprice, b.vlwidth, b.vlheight, b.vllength, b.vlweight, b.desurl, COUNT(*) AS nrqtd, SUM(b.vlprice) AS vltotal");
+
+			return Product::checkList();
+	}
+
 	public function getCategories()
 	{
 
@@ -178,15 +188,6 @@ class Product extends Model {
 		]);
 
 	}
-
-	public function getProducts()
-	{
-		$sql = new Sql();
-
-		$results = $sql->select("SELECT * FROM tb_products");
-
-	}
-
 	public static function getPage($page = 1, $itemsPerPage = 10)
 	{
 

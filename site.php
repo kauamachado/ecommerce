@@ -20,6 +20,12 @@ $app->get('/', function() {
 	]);
 
 });
+$app->get('/sobre-nos', function(){
+
+	$page = new Page();
+
+	$page->setTpl("sobre-nos");
+});
 
 $app->get("/categories/:idcategory", function($idcategory){
 
@@ -61,6 +67,20 @@ $app->get("/products/:desurl", function($desurl){
 	$page->setTpl("product-detail", [
 		'product'=>$product->getValues(),
 		'categories'=>$product->getCategories()
+	]);
+
+});
+
+$app->get("/products", function(){
+
+	$product = new Product();
+
+	$product->getProducts();
+
+	$page = new Page();
+
+	$page->setTpl("product", [
+		'product'=>$product->getProducts()
 	]);
 
 });
@@ -582,13 +602,13 @@ $app->get("/boleto/:idorder", function($idorder){
 	$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP: " . $order->getdeszipcode();
 
 	// INFORMACOES PARA O CLIENTE
-	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Hcode E-commerce";
+	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja World of Seeds";
 	$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
 	$dadosboleto["demonstrativo3"] = "";
 	$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
 	$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: suporte@hcode.com.br";
-	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
+	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: worldofseeds2020@gmail.com";
+	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema  WS Ecommerce - www.mundodasemente.com.br";
 
 	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 	$dadosboleto["quantidade"] = "";
@@ -610,11 +630,11 @@ $app->get("/boleto/:idorder", function($idorder){
 	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
 
 	// SEUS DADOS
-	$dadosboleto["identificacao"] = "Hcode Treinamentos";
-	$dadosboleto["cpf_cnpj"] = "24.700.731/0001-08";
-	$dadosboleto["endereco"] = "Rua Ademar Saraiva Leão, 234 - Alvarenga, 09853-120";
-	$dadosboleto["cidade_uf"] = "São Bernardo do Campo - SP";
-	$dadosboleto["cedente"] = "HCODE TREINAMENTOS LTDA - ME";
+	$dadosboleto["identificacao"] = "World of Seeds";
+	$dadosboleto["cpf_cnpj"] = "95.813.404/0001-00";
+	$dadosboleto["endereco"] = " Av. Europa, 1097 - Jardim Europa, 18406-460";
+	$dadosboleto["cidade_uf"] = "Itapeva - SP";
+	$dadosboleto["cedente"] = "WORLD SEEDS LTDA - ME";
 
 	// NÃO ALTERAR!
 	$path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "res" . DIRECTORY_SEPARATOR . "boletophp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;
