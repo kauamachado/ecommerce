@@ -165,15 +165,7 @@ class Product extends Model {
 
 	}
 
-	public function getProducts()
-	{
-		$sql = new Sql();
 
-		return  $sql->select("
-			SELECT b.idproduct, b.desproduct , b.vlprice, b.vlwidth, b.vlheight, b.vllength, b.vlweight, b.desurl, COUNT(*) AS nrqtd, SUM(b.vlprice) AS vltotal");
-
-			return Product::checkList();
-	}
 
 	public function getCategories()
 	{
@@ -239,6 +231,41 @@ class Product extends Model {
 
 	}
 
+public function getProducts(){
+
+		$sql = new Sql();
+
+		return $sql->select("
+				SELECT * FROM tb_products WHERE idproduct IN(
+					SELECT a.idproduct
+					FROM tb_products a)"
+				);
+}
+public function getProductsPage($page = 1, $itemsPerPage = 8)
+	{
+
+		$start = ($page - 1) * $itemsPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_products a
+			INNER JOIN tb_products b ON a.idproduct = b.idproduct
+			LIMIT $start, $itemsPerPage;
+		", [
+			':idproduct'=>$this->getidproduct()
+		]);
+
+		$resultTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+		return [
+			'data'=>Product::checkList($results),
+			'total'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsPerPage)
+		];
+
+	}
 }
 
  ?>

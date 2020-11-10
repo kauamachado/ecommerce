@@ -13,6 +13,7 @@ $app->get('/', function() {
 
 	$products = Product::listAll();
 
+
 	$page = new Page();
 
 	$page->setTpl("index", [
@@ -20,6 +21,39 @@ $app->get('/', function() {
 	]);
 
 });
+
+$app->get("/products/", function(){
+
+	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+
+		$products = new Product();
+
+	
+		$pagination = $products->getProductsPage($page);
+	
+
+		$pages = [];
+
+	for ($i=1; $i <= $pagination['pages']; $i++) { 
+		array_push($pages, [
+			'link'=>'/products/'.$products->getidproduct().'?page='.$i,
+			'page'=>$i
+		]);
+	}
+
+
+	$page = new Page();
+
+
+	$page->setTpl("product", [
+		'products'=>Product::checkList($products),
+		'products'=>$pagination["data"],
+		'pages'=>$pages
+	]);
+
+});
+
 $app->get('/sobre-nos', function(){
 
 	$page = new Page();
@@ -36,6 +70,8 @@ $app->get("/categories/:idcategory", function($idcategory){
 	$category->get((int)$idcategory);
 
 	$pagination = $category->getProductsPage($page);
+
+
 
 	$pages = [];
 
@@ -71,19 +107,7 @@ $app->get("/products/:desurl", function($desurl){
 
 });
 
-$app->get("/products", function(){
 
-	$product = new Product();
-
-	$product->getProducts();
-
-	$page = new Page();
-
-	$page->setTpl("product", [
-		'product'=>$product->getProducts()
-	]);
-
-});
 
 $app->get("/cart", function(){
 
@@ -95,6 +119,7 @@ $app->get("/cart", function(){
 		'cart'=>$cart->getValues(),
 		'products'=>$cart->getProducts(),
 		'error'=>Cart::getMsgError()
+
 	]);
 
 });

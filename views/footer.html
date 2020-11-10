@@ -5,8 +5,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
                         <h2>World of Seeds</h2>
-                        <p>Desde 2020 no mercado, a World of Seeds, nossa loja de venda de cereais está para oferecer o melhor atendimento possivel, além de só vender cereais de alta qualidade.<br><br>
-                        Obs: Os produtos vendidos em nosso site são de uso exclusivo para plantio!</p>
+                        <p>Desde 2020 no mercado, a World of Seeds, nossa loja de venda de cereais está para oferecer o melhor atendimento possivel, além de só vender cereais de alta qualidade.
                         <div class="footer-social">
                             <a href="https://www.facebook.com/World-of-Seeds-110488477391033/" target="_blank"><i class="fa fa-facebook"></i></a>
                         </div>
