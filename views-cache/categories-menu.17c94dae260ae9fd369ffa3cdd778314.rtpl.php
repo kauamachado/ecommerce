@@ -1,1 +1,1 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/categories/12">Adubos</a></li><li><a href="/categories/8">Cereais</a></li><li><a href="/categories/13">Couve</a></li><li><a href="/categories/14">Milho</a></li>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/categories/16">Amêndoas</a></li><li><a href="/categories/22">Cereais</a></li><li><a href="/categories/12">Fertilizantes</a></li><li><a href="/categories/15">Leguminosas</a></li><li><a href="/categories/21">Pimentas</a></li><li><a href="/categories/17">Sementes</a></li>

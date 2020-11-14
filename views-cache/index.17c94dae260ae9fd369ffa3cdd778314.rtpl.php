@@ -1,10 +1,11 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
- <div class="slider-area">
+ <div class="slider-area" >
+ 
             
             <div class="block-slider block-slider4">
                 <ul class="" id="bxslider-home4">
                      <li>
-                        <img src="/res/site/img/slide1.jpg" alt="Slide">
+                        <img src="/res/site/img/slide1.jpg" alt="Slide" id="size">
                     </li>  
                      <li>
                         <img src="/res/site/img/slide2.jpg" alt="Slide">
@@ -17,10 +18,12 @@
             
 
                 </ul>
+
+
             </div>
            
     </div> 
-    
+      
     <div class="promo-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
